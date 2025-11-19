@@ -1,4 +1,4 @@
-
+/* Reset e configurações básicas */
 * {
     margin: 0;
     padding: 0;
@@ -20,25 +20,18 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #ffffff;
-    color: var(--texto-escuro);
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-
+/* ================= NAVBAR ================= */
 header {
     position: sticky;
     top: 0;
@@ -80,7 +73,7 @@ header {
     filter: brightness(1.1);
 }
 
-
+/* Nav Links Desktop */
 .nav-links {
     display: flex;
     gap: 8px;
@@ -120,9 +113,15 @@ header {
     transform: translateY(-2px);
 }
 
-
+/* Hamburger Menu */
 .menu-toggle {
-    display: none;
+    /* Esconde o checkbox, mas mantém a funcionalidade */
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    /* Garante que não interfira em cliques */
 }
 
 .hamburger {
@@ -142,7 +141,7 @@ header {
     transform-origin: center;
 }
 
-
+/* Animação do Hamburger */
 .menu-toggle:checked~.hamburger span:nth-child(1) {
     transform: rotate(45deg) translate(10px, 10px);
 }
@@ -160,54 +159,75 @@ header {
 .nav-links-mobile {
     display: none;
     list-style: none;
+    flex-direction: column;
+    position: absolute;
+    top: calc(100% + 10px);
+    /* Adiciona 10px de espaço abaixo do navbar */
+    left: 10px;
+    /* Adiciona margem lateral */
+    right: 10px;
+    /* Adiciona margem lateral */
+    width: auto;
+    /* Ajusta a largura para caber nas margens */
+    background: linear-gradient(135deg, var(--verde-primario) 0%, #6ba39b 100%);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 0;
+    /* Remove o padding vertical do container */
+    border-radius: 0 0 15px 15px;
+    /* Bordas curvas apenas na parte inferior */
+    z-index: 999;
+    transform: translateY(-100%);
+    /* Inicialmente escondido */
+    opacity: 0;
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 }
 
-main {
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 36px 20px;
+/* Estado aberto do menu mobile */
+.menu-toggle:checked~.nav-links-mobile {
+    display: flex;
+    /* Mostrar o menu */
+    transform: translateY(0);
+    opacity: 1;
 }
 
-section {
-    margin-bottom: 64px;
-    animation: fadeInUp 0.6s ease-out;
+.nav-links-mobile li {
+    text-align: center;
+    padding: 0.5px 2px;
+    /* Aumenta o padding para torná-lo maior */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.nav-links-mobile li:last-child {
+    border-bottom: none;
 }
 
-
-.banner-hero {
-    margin-bottom: 48px;
-}
-
-.banner-container {
-    position: relative;
-    overflow: hidden;
-    border-radius: 12px;
-}
-
-.banner-img {
-    width: 100%;
-    border-radius: 12px;
-    box-shadow: var(--sombra-forte);
-    transition: var(--transicao-padrao);
+.nav-links-mobile a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
     display: block;
+    padding: 10px;
+    transition: background-color 0.3s ease;
 }
 
-.banner-img:hover {
-    transform: scale(1.02);
-    box-shadow: var(--sombra-forte);
+.nav-links-mobile a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
+
+#img_menu_mobile {
+    width: 100%;
+    max-width: 200px;
+    /* Ajuste o tamanho da imagem conforme necessário */
+    height: auto;
+    border-radius: 8px;
+    margin: 5px 0;
+    transition: transform 0.3s ease;
+}
+
+.nav-links-mobile a:hover #img_menu_mobile {
+    transform: scale(1.05);
+}
+
 /* ================= SOBRE O CURSO ================= */
 .about-section {
     margin-bottom: 80px;
@@ -325,6 +345,18 @@ section {
     animation: ripple-animation 0.6s ease-out;
 }
 
+@keyframes ripple-animation {
+    0% {
+        transform: scale(0);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
 /* ================= SERVIÇOS ================= */
 .services-section {
     margin-bottom: 80px;
@@ -332,7 +364,7 @@ section {
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); 
+    grid-template-columns: repeat(2, 1fr);
     gap: 30px;
     justify-content: center;
 }
@@ -482,9 +514,9 @@ section {
 
 .disciplinas-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); 
+    grid-template-columns: repeat(2, 1fr);
     gap: 30px;
-    justify-items: center; 
+    justify-items: center;
     align-items: center;
 }
 
@@ -546,6 +578,31 @@ section {
     color: #666;
     font-size: 14px;
     line-height: 1.7;
+}
+
+/* ================= BANNER HERO ================= */
+.banner-hero {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+
+.banner-img {
+    width: 70%;
+    border-radius: 12px;
+    box-shadow: var(--sombra-forte);
+    transition: var(--transicao-padrao);
+    display: block;
+    margin: 0 auto;
+    
+}
+
+.banner-img:hover {
+    transform: scale(1.02);
+    box-shadow: var(--sombra-forte);
 }
 
 /* ================= OAB SECTION ================= */
@@ -746,16 +803,17 @@ section {
 
 /* ================= FOOTER ================= */
 
-a{
+a {
     text-decoration: none;
     color: white;
 }
+
 .footer {
     background: linear-gradient(180deg, var(--verde-primario), var(--verde-escuro));
     color: var(--card-branco);
     padding: 40px 20px 20px;
     box-shadow: var(--sombra-forte);
-    
+
 }
 
 .footer-content {
@@ -864,6 +922,7 @@ a{
     font-size: 0.85rem;
     opacity: 0.7;
 }
+
 /* ================= ANIMAÇÕES ================= */
 .scroll-animate,
 .card-animate {
@@ -878,18 +937,65 @@ a{
     transform: translateY(0);
 }
 
-/* ================= RESPONSIVO ================= */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
+/* ================= RESPONSIVIDADE (BREAKPOINTS) ================= */
+
+/* Desktop Médio (max-width: 1024px) - Ajustes finos antes do tablet */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 15px;
     }
 
-    .desktop-menu {
+    .navbar {
+        padding: 14px 20px;
+    }
+
+    .navbar-logo img {
+        width: 130px;
+    }
+
+    .nav-link {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+
+    .about-card {
+        gap: 30px;
+        padding: 30px;
+    }
+
+    .about-logo img {
+        width: 180px;
+    }
+
+    .about-content {
+        gap: 20px;
+        padding: 25px;
+    }
+
+    .direito-text,
+    .oab-text,
+    .carreira-text,
+    .final-text {
+        padding: 40px;
+    }
+}
+
+/* Tablet (max-width: 992px) - Transição para menu mobile e layout de 1 coluna em grids */
+@media (max-width: 992px) {
+
+
+    .nav-links {
         display: none;
+
     }
 
-    .banner-img {
-        height: 400px;
+    .hamburger {
+        display: flex;
+
+    }
+    .services-grid,
+    .disciplinas-grid {
+        grid-template-columns: 1fr;
     }
 
     .about-card {
@@ -897,8 +1003,18 @@ a{
         padding: 30px;
     }
 
+    .about-logo img {
+        width: 100%;
+        max-width: 200px;
+    }
+
     .about-content {
         flex-direction: column;
+        text-align: center;
+    }
+
+    .about-text {
+        min-width: auto;
     }
 
     .direito-card,
@@ -912,11 +1028,72 @@ a{
         flex-direction: column;
     }
 
+    .direito-image,
+    .oab-image,
+    .carreira-image,
+    .final-image {
+        width: 100%;
+        order: -1;
+    }
+
+    .direito-card .direito-image,
+    .final-card .final-image {
+        order: 1;
+    }
+
+    .oab-content .oab-image {
+        order: -1;
+    }
+
+    .carreira-item:nth-child(even) .carreira-image {
+        order: -1;
+    }
+
     .direito-text,
     .oab-text,
     .carreira-text,
     .final-text {
         padding: 30px;
+        width: 100%;
+    }
+
+    .oab-title {
+        font-size: 32px;
+    }
+
+    .direito-text h2 {
+        font-size: 28px;
+    }
+
+    .carreira-header h3 {
+        font-size: 24px;
+    }
+
+    .footer-top {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-logo-section {
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-social {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        padding: 10px 15px;
+    }
+
+    .navbar-logo img {
+        width: 110px;
+    }
+
+    .container {
+        padding: 0 10px;
     }
 
     .section-title {
@@ -924,60 +1101,100 @@ a{
     }
 
     .oab-title {
-        font-size: 28px;
+        font-size: 24px;
+        padding: 30px 15px;
     }
 
-    .disciplinas-grid,
-    .services-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 480px) {
-    .nav-container {
-        padding: 14px 20px;
+    .direito-text h2 {
+        font-size: 24px;
     }
 
-    .banner-img {
-        height: 300px;
+    .direito-text,
+    .oab-text,
+    .carreira-text,
+    .final-text {
+        padding: 20px;
     }
 
     .about-card {
         padding: 20px;
     }
 
-    .about-logo img {
-        width: 150px;
-    }
-
     .about-content {
         padding: 20px;
+    }
+
+    .about-text p {
+        font-size: 16px;
+    }
+
+    .botao,
+    .botao1 {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+
+    .disciplinas-container {
+        padding: 30px 15px;
+    }
+
+    .card {
+        padding: 25px;
+    }
+
+    .card-content h2 {
+        font-size: 20px;
+    }
+
+    .footer-top,
+    .footer-middle {
+        gap: 20px;
+    }
+}
+@media (max-width: 400px) {
+    .navbar-logo img {
+        width: 100px;
     }
 
     .section-title {
         font-size: 24px;
     }
 
-    .disciplinas-container {
-        padding: 30px 20px;
+    .oab-title {
+        font-size: 20px;
+    }
+
+    .direito-text h2 {
+        font-size: 20px;
+    }
+
+    .direito-text p,
+    .oab-box p,
+    .carreira-text p,
+    .final-box p {
+        font-size: 14px;
+    }
+}
+@media (min-width: 993px) {
+    .nav-links-mobile {
+        display: none !important;
     }
 }
 
-/* Media Query para Mobile */
 @media (max-width: 992px) {
-  .navbar {
-    padding: 10px 20px;
-  }
+    .nav-links {
+        display: none !important;
+    }
+}
 
-  .navbar-logo img {
-    width: 120px;
-  }
+@media (max-width: 992px) {
+    .banner-img {
+        width: 90%;
+    }
+}
 
-  .nav-links {
-    display: none; /* Esconder menu desktop */
-  }
-
-  .hamburger {
-    display: flex; /* Mostrar ícone do hambúrguer */
-  }
+@media (max-width: 600px) {
+    .banner-img {
+        width: 100%;
+    }
 }
