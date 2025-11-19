@@ -263,20 +263,30 @@ a {
 }
 
 .anima-video {
-    width: 300px;
-    text-align: center;
+    width: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.video-box img {
+.video-box {
     width: 100%;
     border-radius: 12px;
     box-shadow: var(--sombra-media);
+    overflow: hidden;
+}
+
+.video-pequeno {
+    width: 100%;
+    border-radius: 12px;
+    display: block;
 }
 
 .legenda {
     font-size: 0.9rem;
     color: var(--texto-escuro);
     margin-top: 10px;
+    text-align: center;
     opacity: 0.8;
 }
 
