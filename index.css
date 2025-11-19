@@ -9,13 +9,14 @@
     --sombra-media: 0 8px 24px rgba(0, 0, 0, 0.12);
     --sombra-forte: 0 12px 32px rgba(0, 0, 0, 0.15);
     --transicao-padrao: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Variáveis não fornecidas, mas necessárias para a refatoração */
     --cor-secundaria: var(--verde-escuro);
     --cor-terciaria: var(--verde-primario);
     --cor-complementar: var(--card-branco);
     --fonte-padrao: 'Montserrat', sans-serif;
 }
 
-
+/* RESET E ESTILOS GERAIS */
 * {
     margin: 0;
     padding: 0;
@@ -31,7 +32,7 @@ body {
     background-color: var(--fundo-claro);
     color: var(--texto-escuro);
     line-height: 1.6;
-    overflow-x: hidden; 
+    overflow-x: hidden; /* Evita rolagem horizontal indesejada */
 }
 
 a {
@@ -39,7 +40,7 @@ a {
     color: inherit;
 }
 
-
+/* HEADER - MENU DE NAVEGAÇÃO */
 .header {
     background-color: var(--card-branco);
     box-shadow: var(--sombra-leve);
@@ -59,7 +60,7 @@ a {
 }
 
 .navbar-logo {
-    height: 50px; 
+    height: 50px; /* Ajuste para melhor visualização */
     width: auto;
     transition: var(--transicao-padrao);
 }
@@ -68,7 +69,7 @@ a {
     opacity: 0.8;
 }
 
-
+/* Menu Desktop */
 .nav-links {
     display: flex;
     list-style: none;
@@ -94,19 +95,31 @@ a {
     border-color: var(--verde-primario);
 }
 
+/* Estilos para os botões do menu original (b1, b2, b3) - Simplificados */
+.nav-links li:nth-child(1) a {
+    background-color: var(--verde-primario);
+    color: var(--card-branco);
+}
 
+.nav-links li:nth-child(1) a:hover {
+    background-color: var(--verde-escuro);
+    color: var(--card-branco);
+}
+
+/* Menu Mobile (Hamburger) */
 .menu-toggle {
     display: none;
 }
 
 .hamburger {
-    display: none; 
+    display: none; /* Será exibido apenas em mobile */
 }
 
 .nav-links-mobile {
-    display: none; 
+    display: none; /* Será exibido apenas em mobile */
 }
 
+/* CARROSSEL */
 .hero-section {
     padding: 20px 0;
     background-color: var(--fundo-claro);
@@ -119,9 +132,7 @@ a {
     overflow: hidden;
     border-radius: 15px;
     box-shadow: var(--sombra-media);
-    
-
-    padding-top: 26.92%; 
+    padding-top: 26.92%;
     height: 0; 
 }
 
@@ -130,7 +141,7 @@ a {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%; 
+    height: 100%;
     opacity: 0; 
     transition: opacity 1.0s ease-in-out;
     z-index: 1; 
@@ -143,13 +154,11 @@ a {
 
 .banner img {
     width: 100%;
-    height: 100%; 
+    height: 100%;
     object-fit: cover;
     display: block;
     border-radius: 15px;
 }
-
-
 
 .prev,
 .next {
@@ -209,6 +218,7 @@ a {
     background-color: var(--verde-primario);
 }
 
+/* SEÇÃO ANIMA PROFISSÕES */
 .anima-container {
     display: flex;
     flex-direction: row;
@@ -253,34 +263,24 @@ a {
 }
 
 .anima-video {
-    width: 340px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 300px;
+    text-align: center;
 }
 
-.video-box {
+.video-box img {
     width: 100%;
     border-radius: 12px;
     box-shadow: var(--sombra-media);
-    overflow: hidden;
-}
-
-.video-pequeno {
-    width: 100%;
-    border-radius: 12px;
-    display: block;
 }
 
 .legenda {
     font-size: 0.9rem;
     color: var(--texto-escuro);
     margin-top: 10px;
-    text-align: center;
     opacity: 0.8;
 }
 
-
+/* SEÇÃO CTA UNIFAGOC */
 .cta-unifagoc {
     padding: 20px 0;
     background-color: var(--fundo-claro);
@@ -321,6 +321,7 @@ a {
     font-weight: 500;
 }
 
+/* SEÇÃO CARDS CURSOS */
 .cursos-section {
     padding: 40px 20px;
     background-color: var(--verde-claro);
@@ -339,7 +340,7 @@ a {
     background-color: var(--card-branco);
     border-radius: 16px;
     overflow: hidden;
-    width: 250px; 
+    width: 250px; /* Largura fixa para desktop */
     box-shadow: var(--sombra-media);
     transition: var(--transicao-padrao);
     flex-grow: 1;
@@ -382,6 +383,7 @@ a {
     text-align: center;
 }
 
+/* FOOTER */
 .footer {
     background: linear-gradient(180deg, var(--verde-primario), var(--verde-escuro));
     color: var(--card-branco);
@@ -494,6 +496,9 @@ a {
     opacity: 0.7;
 }
 
+/* MEDIA QUERIES PARA RESPONSIVIDADE */
+
+/* Telas menores que 1024px (Tablets e menores) */
 @media (max-width: 1024px) {
     .nav-links {
         gap: 15px;
@@ -540,14 +545,13 @@ a {
     }
 
     .card {
-        width: 45%; 
+        width: 45%;
         max-width: none;
     }
 }
 
-
+/* Telas menores que 768px (Smartphones e menores) */
 @media (max-width: 768px) {
-
     .nav-links {
         display: none;
         flex-direction: column;
@@ -586,18 +590,18 @@ a {
     }
 
     .hamburger {
-        display: block;
-        flex-direction: column;
-        justify-content: space-around;
-        width: 30px;
-        height: 25px;
-        cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+  
     }
-
     .hamburger span {
         display: block;
         width: 100%;
-        height: 3px;
+        height: 5px;
         background-color: var(--texto-escuro);
         border-radius: 3px;
         transition: all 0.3s ease-in-out;
@@ -616,7 +620,7 @@ a {
     }
 
     .nav-links-mobile {
-        display: none; 
+        display: none;
         list-style: none;
         gap: 10px;
         padding: 10px;
@@ -626,7 +630,7 @@ a {
         opacity: 0;
         transition: transform 0.3s ease-out, opacity 0.3s ease-out;
         position: absolute;
-        top: 100%; 
+        top: 100%;
         left: 0;
         background-color: var(--verde-claro);
         box-shadow: var(--sombra-leve);
@@ -634,13 +638,13 @@ a {
     }
 
     .nav-links-mobile.active {
-        display: flex; 
+ display: flex;
         position: fixed; 
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        z-index: 999; 
+        z-index: 999;
         flex-direction: column;
         align-items: center;
         justify-content: center;
@@ -686,7 +690,7 @@ a {
         transform: rotate(-45deg) translate(5px, -5px);
     }
 
-
+    /* Menu Mobile com Cards */
     .nav-links-mobile {
         display: none;
         list-style: none;
@@ -711,6 +715,7 @@ a {
         height: 40px;
     }
 
+    /* Carrossel */
     .carousel-container {
         margin: 0 10px;
     }
@@ -724,6 +729,7 @@ a {
         font-size: 18px;
     }
 
+    /* Seção Anima */
     .anima-container {
         margin: 20px 10px;
         padding: 20px;
@@ -744,10 +750,10 @@ a {
     }
 
     .anima-video {
-        display: none; 
+        display: none;
     }
 
-
+    /* CTA Unifagoc */
     .container-unifagoc {
         margin: 10px;
         padding: 15px;
@@ -770,13 +776,11 @@ a {
     }
 
     .card {
-        width: 100%; 
         max-width: 300px;
         opacity: 0;
         transform: translateY(20px);
         transition: opacity 0.5s ease-out, transform 0.5s ease-out;
     }
-
 
     .anima-container, .cta-unifagoc, .cursos-section {
         opacity: 0;
@@ -784,7 +788,6 @@ a {
         transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     }
 
-    
     .fade-in {
         opacity: 1;
         transform: translateY(0);
